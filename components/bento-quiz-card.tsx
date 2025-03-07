@@ -188,13 +188,13 @@ export function BentoQuizCard({
           }}
         />
 
-        <CardContent className={`p-6 relative z-10`} style={{ background: "rgba(30, 30, 30, 0.95)" }}>
+        <CardContent className={`p-6 relative z-10`} style={{ background: "rgba(18, 18, 20, 0.98)" }}>
           <div className="flex items-center gap-4 mb-5">
             <div 
               className={`h-12 w-12 rounded-full flex items-center justify-center relative overflow-hidden`}
               style={{
-                background: "linear-gradient(135deg, rgba(6, 214, 160, 0.2), rgba(17, 138, 178, 0.2))",
-                boxShadow: "0 0 20px rgba(6, 214, 160, 0.15)"
+                background: "linear-gradient(135deg, rgba(6, 214, 160, 0.25), rgba(17, 138, 178, 0.25))",
+                boxShadow: "0 0 20px rgba(6, 214, 160, 0.2)"
               }}
             >
               <HelpCircle className="h-6 w-6 text-white" />
@@ -220,27 +220,27 @@ export function BentoQuizCard({
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Badge className="bg-[#118AB2]/20 text-[#118AB2] border border-[#118AB2]/30 font-medium">{category}</Badge>
+                  <Badge className="bg-[#118AB2]/30 text-[#5ccfff] border border-[#118AB2]/40 font-medium">{category}</Badge>
                 </motion.div>
               </div>
-              <p className="text-sm text-gray-300 line-clamp-2">{description}</p>
+              <p className="text-sm text-gray-100 line-clamp-2">{description}</p>
             </div>
           </div>
 
           <div className="space-y-4">
-            <div className="flex items-center justify-between bg-black/20 p-3 rounded-lg">
+            <div className="flex items-center justify-between bg-black/40 p-3 rounded-lg">
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-[#06D6A0]" />
-                <span className="text-sm text-gray-200">{estimatedTime}</span>
+                <span className="text-sm text-gray-100">{estimatedTime}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Trophy className="h-4 w-4 text-[#FFD166]" />
-                <span className="text-sm text-gray-200">{xpPoints} XP</span>
+                <span className="text-sm text-gray-100">{xpPoints} XP</span>
               </div>
             </div>
 
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-300 bg-black/20 py-1 px-3 rounded-full">{questionCount} Questions</span>
+              <span className="text-sm text-gray-100 bg-black/40 py-1 px-3 rounded-full">{questionCount} Questions</span>
               {getDifficultyBadge()}
             </div>
 
@@ -254,7 +254,7 @@ export function BentoQuizCard({
                 value={progress} 
                 className="h-1.5" 
                 style={{
-                  background: "rgba(255,255,255,0.1)",
+                  background: "rgba(255,255,255,0.15)",
                   ["--progress-background" as any]: "linear-gradient(to right, #06D6A0, #118AB2)"
                 }}
               />
@@ -266,9 +266,9 @@ export function BentoQuizCard({
           <Button
             className="w-full rounded-none h-14 relative overflow-hidden font-medium text-base"
             style={{
-              background: "linear-gradient(to right, rgba(6, 214, 160, 0.8), rgba(17, 138, 178, 0.8))",
+              background: "linear-gradient(to right, rgba(6, 214, 160, 0.9), rgba(17, 138, 178, 0.9))",
               color: "white",
-              borderTop: "1px solid rgba(255,255,255,0.1)"
+              borderTop: "1px solid rgba(255,255,255,0.15)"
             }}
           >
             <span className="flex items-center justify-center">

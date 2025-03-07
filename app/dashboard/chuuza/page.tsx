@@ -88,11 +88,11 @@ export default function ChuuzaCaseStudy() {
               <Button variant="ghost" size="icon" className="rounded-full">
                 <span className="sr-only">User menu</span>
                 <Image
-                  src="/placeholder-user.jpg"
+                  src="/images/ian.jpg"
                   width="32"
                   height="32"
                   className="rounded-full border border-border"
-                  alt="Kuria's avatar"
+                  alt="Ian's avatar"
                 />
               </Button>
             </div>
@@ -284,4 +284,3 @@ export default function ChuuzaCaseStudy() {
     </div>
   )
 }
-

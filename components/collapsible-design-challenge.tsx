@@ -25,7 +25,7 @@ export function CollapsibleDesignChallenge() {
   }
 
   return (
-    <Card className="overflow-hidden border border-border/50 hover-lift rounded-xl shadow-md">
+    <Card className="overflow-hidden border border-border/50 hover-lift rounded-lg shadow-md">
       <div className="relative">
         {/* Collapsed View */}
         {!isExpanded && (
@@ -42,7 +42,7 @@ export function CollapsibleDesignChallenge() {
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="flex items-start md:items-center gap-4">
                   <motion.div 
-                    className="p-3.5 rounded-xl flex items-center justify-center relative overflow-hidden shrink-0"
+                    className="p-3.5 rounded-lg flex items-center justify-center relative overflow-hidden shrink-0"
                     whileHover={magicWandAnimation.animate}
                     transition={magicWandAnimation.transition}
                     onHoverStart={() => setIsHovered(true)}
@@ -98,7 +98,7 @@ export function CollapsibleDesignChallenge() {
                 </div>
                 <motion.button
                   onClick={() => setIsExpanded(true)}
-                  className="flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-md text-white transition-all duration-300 relative overflow-hidden group w-full md:w-auto"
+                  className="flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-lg text-white transition-all duration-300 relative overflow-hidden group w-full md:w-auto"
                   whileHover={{ scale: 1.05 }}
                   style={{
                     background: "linear-gradient(to right, #06D6A0, #118AB2)",
@@ -120,7 +120,7 @@ export function CollapsibleDesignChallenge() {
             <div className="bg-zinc-900 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border/50">
               <div className="flex items-center gap-4">
                 <motion.div 
-                  className="p-3.5 rounded-xl flex items-center justify-center relative overflow-hidden shrink-0"
+                  className="p-3.5 rounded-lg flex items-center justify-center relative overflow-hidden shrink-0"
                   whileHover={magicWandAnimation.animate}
                   transition={magicWandAnimation.transition}
                   style={{
@@ -141,7 +141,7 @@ export function CollapsibleDesignChallenge() {
               </div>
               <motion.button
                 onClick={() => setIsExpanded(false)}
-                className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-md text-white transition-all duration-300 relative overflow-hidden group w-full md:w-auto"
+                className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-white transition-all duration-300 relative overflow-hidden group w-full md:w-auto"
                 whileHover={{ scale: 1.05 }}
                 style={{
                   background: "linear-gradient(to right, #118AB2, #06D6A0)",

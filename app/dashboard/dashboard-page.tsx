@@ -121,11 +121,11 @@ export default function DashboardPage() {
                 <Button variant="ghost" size="icon" className="rounded-full overflow-hidden">
                   <span className="sr-only">User menu</span>
                   <Image
-                    src="/placeholder-user.jpg"
+                    src="/images/ian.jpg"
                     width="32"
                     height="32"
                     className="rounded-full border border-border"
-                    alt="Kuria's avatar"
+                    alt="Ian Kuria avatar"
                   />
                 </Button>
                 {isProfileHovered && (

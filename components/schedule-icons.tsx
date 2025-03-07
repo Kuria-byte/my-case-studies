@@ -39,43 +39,60 @@ export const AnimatedCoffeeIcon = ({ className = "h-10 w-10" }) => {
 export const AnimatedMessageIcon = ({ className = "h-10 w-10" }) => {
   return (
     <motion.div className={`relative ${className}`} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-      <MessageSquare className="text-primary" />
+      {/* Using a simple microphone icon from Lucide */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="text-primary"
+      >
+        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+        <line x1="12" x2="12" y1="19" y2="22"></line>
+      </svg>
 
-      {/* Notification dot animation */}
+      {/* Simple pulse animation */}
       <motion.div
-        className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-accent"
+        className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-red-500"
         animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.7, 1, 0.7],
+          opacity: [0.6, 1, 0.6],
+          scale: [0.8, 1, 0.8],
         }}
         transition={{
-          duration: 2,
+          duration: 1.5,
           repeat: Infinity,
           repeatType: "reverse",
           ease: "easeInOut",
         }}
       />
 
-      {/* Floating message animation */}
+      {/* Simple sound wave animation */}
       <motion.div
-        className="absolute -top-3 -right-2 opacity-0"
+        className="absolute -top-3 right-1/2 transform translate-x-1/2 w-6 h-6 opacity-0"
         animate={{
-          y: [-2, -10, -2],
-          opacity: [0, 0.8, 0],
-          scale: [0.8, 1, 0.8],
+          opacity: [0, 0.7, 0],
+          y: [-2, -8],
         }}
         transition={{
-          duration: 3,
-          repeat: Infinity,
-          repeatDelay: 1,
+          duration: 2,
+          repeat: Number.POSITIVE_INFINITY,
+          repeatType: "loop",
           ease: "easeInOut",
         }}
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
-            d="M8,5 L16,5 L16,12 L12,16 L8,12 Z"
-            fill="currentColor"
-            className="text-primary/40"
+            d="M8,12 C10,8 14,8 16,12"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            className="text-primary/60"
           />
         </svg>
       </motion.div>

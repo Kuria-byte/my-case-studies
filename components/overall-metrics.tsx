@@ -135,9 +135,8 @@ export function OverallMetrics() {
 
   return (
     <div className="metrics-container w-full">
-      <Tabs defaultValue="brand" className="w-full">
+      <Tabs defaultValue="projects" className="w-full">
         <TabsList className="grid grid-cols-3 mb-4">
-      
           <TabsTrigger value="projects">Projects</TabsTrigger>
           <TabsTrigger value="brand">Brand Impact</TabsTrigger>
           <TabsTrigger value="testing">User Testing</TabsTrigger>

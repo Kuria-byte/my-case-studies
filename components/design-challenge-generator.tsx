@@ -459,10 +459,10 @@ Tags: ${currentChallenge.tags.join(", ")}
 
   return (
     <div className={className}>
-      <CardHeader className="pb-3">
+      <CardHeader className="pb-3 rounded-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-full bg-primary/10">
+            <div className="p-1.5 rounded-lg bg-primary/10">
               <Lightbulb className="h-5 w-5 text-primary" />
             </div>
             <CardTitle>Design Challenge Generator</CardTitle>
@@ -470,7 +470,7 @@ Tags: ${currentChallenge.tags.join(", ")}
           <Button 
             variant="outline" 
             size="sm" 
-            className="gap-1.5 relative overflow-hidden group" 
+            className="gap-1.5 relative overflow-hidden group rounded-lg" 
             onClick={generateChallenge} 
             disabled={isGenerating}
           >
@@ -491,7 +491,7 @@ Tags: ${currentChallenge.tags.join(", ")}
                 }}
               >
                 <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-                <span>Generate Challenge</span>
+                <span>Generate</span>
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
                   <motion.div 
                     className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-primary"
@@ -565,17 +565,17 @@ Tags: ${currentChallenge.tags.join(", ")}
       </CardHeader>
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <div className="px-6">
-          <TabsList className="w-full">
-            <TabsTrigger value="challenge" className="flex-1">
+          <TabsList className="w-full rounded-lg">
+            <TabsTrigger value="challenge" className="flex-1 rounded-lg">
               Challenge
             </TabsTrigger>
-            <TabsTrigger value="solution" className="flex-1">
+            <TabsTrigger value="solution" className="flex-1 rounded-lg">
               Your Solution
             </TabsTrigger>
           </TabsList>
         </div>
         <TabsContent value="challenge" className="pt-0">
-          <CardContent className="p-6">
+          <CardContent className="p-6 rounded-lg">
             {isGenerating ? (
               <div className="flex flex-col items-center justify-center py-8">
                 <Shuffle className="h-8 w-8 text-muted-foreground animate-spin mb-4" />
@@ -591,13 +591,13 @@ Tags: ${currentChallenge.tags.join(", ")}
                   transition={{ duration: 0.3 }}
                 >
                   <div className="flex flex-wrap gap-2 mb-4">
-                    <Badge variant="outline" className={getDifficultyColor(currentChallenge.difficulty)}>
+                    <Badge variant="outline" className={getDifficultyColor(currentChallenge.difficulty) + " rounded-lg"}>
                       {currentChallenge.difficulty.charAt(0).toUpperCase() + currentChallenge.difficulty.slice(1)}
                     </Badge>
-                    <Badge variant="outline" className={getCategoryColor(currentChallenge.category)}>
+                    <Badge variant="outline" className={getCategoryColor(currentChallenge.category) + " rounded-lg"}>
                       {currentChallenge.category.charAt(0).toUpperCase() + currentChallenge.category.slice(1)}
                     </Badge>
-                    <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30">
+                    <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30 rounded-lg">
                       <Clock className="mr-1 h-3 w-3" />
                       {currentChallenge.timeEstimate}
                     </Badge>
@@ -625,7 +625,7 @@ Tags: ${currentChallenge.tags.join(", ")}
 
                   <div className="flex flex-wrap gap-1.5 mb-6">
                     {currentChallenge.tags.map((tag, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs">
+                      <Badge key={index} variant="secondary" className="text-xs rounded-lg">
                         {tag}
                       </Badge>
                     ))}
@@ -646,7 +646,7 @@ Tags: ${currentChallenge.tags.join(", ")}
                       />
                     </div>
                   ) : (
-                    <Button onClick={startTimer} className="w-full mb-4" variant="outline">
+                    <Button onClick={startTimer} className="w-full mb-4" variant="outline" rounded-lg>
                       <Clock className="mr-2 h-4 w-4" />
                       Start Timer ({currentChallenge.timeEstimate})
                     </Button>
@@ -655,7 +655,7 @@ Tags: ${currentChallenge.tags.join(", ")}
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Button
                       onClick={() => setActiveTab("solution")}
-                      className="flex-1 bg-black hover:bg-black/90 text-white dark:bg-white dark:text-black dark:hover:bg-white/90"
+                      className="flex-1 bg-black hover:bg-black/90 text-white dark:bg-white dark:text-black dark:hover:bg-white/90 rounded-lg"
                     >
                       Submit Your Solution
                       <ArrowRight className="ml-2 h-4 w-4" />
@@ -663,12 +663,12 @@ Tags: ${currentChallenge.tags.join(", ")}
 
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button variant="outline" className="gap-2">
+                        <Button variant="outline" className="gap-2 rounded-lg">
                           <Share2 className="h-4 w-4" />
                           Share
                         </Button>
                       </DialogTrigger>
-                      <DialogContent>
+                      <DialogContent className="sm:max-w-md rounded-lg">
                         <DialogHeader>
                           <DialogTitle>Share this challenge</DialogTitle>
                           <DialogDescription>
@@ -678,7 +678,7 @@ Tags: ${currentChallenge.tags.join(", ")}
 
                         <div className="grid gap-4 py-4">
                           <div className="flex flex-col gap-3">
-                            <Button variant="outline" className="gap-2 justify-start" onClick={copyToClipboard}>
+                            <Button variant="outline" className="gap-2 justify-start rounded-lg" onClick={copyToClipboard}>
                               {isCopied ? (
                                 <>
                                   <CheckCircle2 className="h-4 w-4 text-green-500" />
@@ -692,12 +692,12 @@ Tags: ${currentChallenge.tags.join(", ")}
                               )}
                             </Button>
 
-                            <Button variant="outline" className="gap-2 justify-start" onClick={shareOnTwitter}>
+                            <Button variant="outline" className="gap-2 justify-start rounded-lg" onClick={shareOnTwitter}>
                               <Twitter className="h-4 w-4 text-primary" />
                               Share on Twitter
                             </Button>
 
-                            <Button variant="outline" className="gap-2 justify-start" onClick={shareOnLinkedIn}>
+                            <Button variant="outline" className="gap-2 justify-start rounded-lg" onClick={shareOnLinkedIn}>
                               <Linkedin className="h-4 w-4 text-primary" />
                               Share on LinkedIn
                             </Button>
@@ -713,7 +713,7 @@ Tags: ${currentChallenge.tags.join(", ")}
                 <p className="text-muted-foreground">No challenge generated yet</p>
                 <Button
                   onClick={generateChallenge}
-                  className="mt-4 bg-black hover:bg-black/90 text-white dark:bg-white dark:text-black dark:hover:bg-white/90"
+                  className="mt-4 bg-black hover:bg-black/90 text-white dark:bg-white dark:text-black dark:hover:bg-white/90 rounded-lg"
                 >
                   Generate Challenge
                 </Button>
@@ -723,13 +723,13 @@ Tags: ${currentChallenge.tags.join(", ")}
         </TabsContent>
 
         <TabsContent value="solution" className="pt-0">
-          <CardContent className="p-6">
+          <CardContent className="p-6 rounded-lg">
             {!currentChallenge ? (
               <div className="flex flex-col items-center justify-center py-8">
                 <p className="text-muted-foreground">Please generate a challenge first</p>
                 <Button
                   onClick={generateChallenge}
-                  className="mt-4 bg-black hover:bg-black/90 text-white dark:bg-white dark:text-black dark:hover:bg-white/90"
+                  className="mt-4 bg-black hover:bg-black/90 text-white dark:bg-white dark:text-black dark:hover:bg-white/90 rounded-lg"
                 >
                   Generate Challenge
                 </Button>
@@ -749,7 +749,7 @@ Tags: ${currentChallenge.tags.join(", ")}
                   Thank you for submitting your solution to the design challenge.
                 </p>
                 <div className="flex gap-3">
-                  <Button variant="outline" onClick={generateChallenge}>
+                  <Button variant="outline" onClick={generateChallenge} rounded-lg>
                     Try Another Challenge
                   </Button>
                 </div>
@@ -770,7 +770,7 @@ Tags: ${currentChallenge.tags.join(", ")}
                     <Textarea
                       id="solution"
                       placeholder="Describe your solution approach, key features, and how it addresses the constraints..."
-                      className="min-h-[150px]"
+                      className="min-h-[150px] rounded-lg"
                       value={solution}
                       onChange={(e) => setSolution(e.target.value)}
                       required
@@ -782,7 +782,7 @@ Tags: ${currentChallenge.tags.join(", ")}
                       <Label htmlFor="name" className="mb-2 block">
                         Your Name
                       </Label>
-                      <Input id="name" placeholder="John Doe" value={name} onChange={(e) => setName(e.target.value)} />
+                      <Input id="name" placeholder="John Doe" value={name} onChange={(e) => setName(e.target.value)} rounded-lg />
                     </div>
                     <div>
                       <Label htmlFor="email" className="mb-2 block">
@@ -794,18 +794,19 @@ Tags: ${currentChallenge.tags.join(", ")}
                         placeholder="john@example.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        rounded-lg
                       />
                     </div>
                   </div>
 
                   <div className="flex justify-end gap-3">
-                    <Button type="button" variant="outline" onClick={() => setActiveTab("challenge")}>
+                    <Button type="button" variant="outline" onClick={() => setActiveTab("challenge")} rounded-lg>
                       Back to Challenge
                     </Button>
                     <Button
                       type="submit"
                       disabled={!solution.trim() || isSubmitting}
-                      className="bg-black hover:bg-black/90 text-white dark:bg-white dark:text-black dark:hover:bg-white/90"
+                      className="bg-black hover:bg-black/90 text-white dark:bg-white dark:text-black dark:hover:bg-white/90 rounded-lg"
                     >
                       {isSubmitting ? (
                         <>
@@ -827,16 +828,20 @@ Tags: ${currentChallenge.tags.join(", ")}
         </TabsContent>
       </Tabs>
 
-      <CardFooter className="flex justify-between border-t bg-muted/50 px-6 py-3">
+      <CardFooter className="pt-0 flex justify-between rounded-lg">
         <div className="text-xs text-muted-foreground">
           Challenge #{generatedCount} • {currentChallenge?.category || "UX Design"}
         </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-3.5 w-3.5 text-amber-500" />
-          <span className="text-xs text-muted-foreground">
-            {isSubmitted ? "Completed" : "Earn XP by submitting solutions"}
-          </span>
-        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-1.5 rounded-lg"
+          onClick={generateChallenge}
+          disabled={isGenerating}
+        >
+          <Shuffle className="h-3.5 w-3.5" />
+          <span>New Challenge</span>
+        </Button>
       </CardFooter>
     </div>
   )

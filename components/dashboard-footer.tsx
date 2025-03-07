@@ -147,16 +147,10 @@ export function DashboardFooter() {
           <p className="text-muted-foreground mb-4">
             Interested in working together? Reach out to discuss your project.
           </p>
-          <Button className="w-full mb-4 relative overflow-hidden group">
+          <Button className="w-full mb-4 relative overflow-hidden group bg-gradient-to-r from-[#06D6A0] to-[#118AB2] text-white hover:opacity-90">
             <span className="relative z-10 flex items-center gap-2">
               Contact Me <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[#06D6A0] to-[#118AB2]"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: 0 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            />
           </Button>
           <div className="flex justify-center gap-4">
             <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10">

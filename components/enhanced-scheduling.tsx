@@ -28,6 +28,25 @@ export function EnhancedScheduling() {
   const [currentStep, setCurrentStep] = useState(1)
   const [meetingType, setMeetingType] = useState("consultation")
   const [totalSteps] = useState(5)
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined)
+  const [selectedTime, setSelectedTime] = useState<string | null>(null)
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [topic, setTopic] = useState("")
+  const [details, setDetails] = useState("")
+  const [showConfirmation, setShowConfirmation] = useState(false)
+
+  // Format date for display
+  const formatDate = (date: Date | undefined) => {
+    if (!date) return "Not selected";
+    return date.toLocaleDateString('en-US', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
 
   // Floating animation for the icons
   const floatingAnimation = {
@@ -119,6 +138,10 @@ export function EnhancedScheduling() {
                     background: "linear-gradient(to right, #000000, #121212)",
                     color: "white"
                   }}
+                  onClick={() => {
+                    setMeetingType("consultation");
+                    setCurrentStep(1);
+                  }}
                 >
                   <span className="relative z-10 flex items-center justify-center">
                     {hoveredCard === "consultation" ? (
@@ -178,43 +201,41 @@ export function EnhancedScheduling() {
                           <p className="text-sm text-muted-foreground">Choose the option that best fits your needs</p>
                         </div>
 
-                        <RadioGroup
-                          value={meetingType}
-                          onValueChange={(value) => setMeetingType(value)}
-                          className="grid grid-cols-1 md:grid-cols-2 gap-4"
-                        >
-                          <div>
-                            <RadioGroupItem value="consultation" id="consultation" className="peer sr-only" />
-                            <Label
-                              htmlFor="consultation"
-                              className="flex flex-col items-center justify-between rounded-md border-2 border-transparent bg-popover p-4 hover:bg-accent hover:text-accent-foreground cursor-pointer h-full relative before:absolute before:inset-0 before:rounded-md before:border-2 before:border-transparent before:bg-gradient-to-r before:from-[#06D6A0] before:to-[#118AB2] before:content-[''] before:pointer-events-none before:-z-10"
-                            >
-                              <AnimatedCoffeeIcon />
-                              <div className="text-center">
-                                <p className="font-medium mb-1">Free Consultation</p>
-                                <p className="text-sm text-muted-foreground">
-                                  Discuss your UX challenges and how I can help improve your product experience
-                                </p>
-                              </div>
-                            </Label>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div 
+                            className={`flex flex-col items-center justify-between rounded-md border-2 p-4 cursor-pointer h-full transition-all duration-200 ${
+                              meetingType === "consultation" 
+                                ? "border-[#06D6A0] bg-[#06D6A0]/5" 
+                                : "border-transparent bg-popover hover:bg-accent hover:text-accent-foreground"
+                            }`}
+                            onClick={() => setMeetingType("consultation")}
+                          >
+                            <AnimatedCoffeeIcon />
+                            <div className="text-center mt-3">
+                              <p className="font-medium mb-1">Free Consultation</p>
+                              <p className="text-sm text-muted-foreground">
+                                Discuss your UX challenges and how I can help improve your product experience
+                              </p>
+                            </div>
                           </div>
 
-                          <div>
-                            <RadioGroupItem value="interview" id="interview" className="peer sr-only" />
-                            <Label
-                              htmlFor="interview"
-                              className="flex flex-col items-center justify-between rounded-md border-2 border-transparent bg-popover p-4 hover:bg-accent hover:text-accent-foreground cursor-pointer h-full relative before:absolute before:inset-0 before:rounded-md before:border-2 before:border-transparent before:bg-gradient-to-r before:from-[#06D6A0] before:to-[#118AB2] before:content-[''] before:pointer-events-none before:-z-10"
-                            >
-                              <AnimatedMessageIcon />
-                              <div className="text-center">
-                                <p className="font-medium mb-1">Interview Request</p>
-                                <p className="text-sm text-muted-foreground">
-                                  Schedule an interview to feature my work or discuss UX trends
-                                </p>
-                              </div>
-                            </Label>
+                          <div 
+                            className={`flex flex-col items-center justify-between rounded-md border-2 p-4 cursor-pointer h-full transition-all duration-200 ${
+                              meetingType === "interview" 
+                                ? "border-[#118AB2] bg-[#118AB2]/5" 
+                                : "border-transparent bg-popover hover:bg-accent hover:text-accent-foreground"
+                            }`}
+                            onClick={() => setMeetingType("interview")}
+                          >
+                            <AnimatedMessageIcon />
+                            <div className="text-center mt-3">
+                              <p className="font-medium mb-1">Interview Request</p>
+                              <p className="text-sm text-muted-foreground">
+                                Schedule an interview to feature my work or discuss UX trends
+                              </p>
+                            </div>
                           </div>
-                        </RadioGroup>
+                        </div>
                       </div>
                     </motion.div>
                   )}
@@ -236,17 +257,23 @@ export function EnhancedScheduling() {
                           <div className="border rounded-md p-4">
                             <h4 className="text-sm font-medium mb-2">Available dates</h4>
                             {/* Calendar integration */}
-                            <div className="bg-white rounded-md">
+                            <div className="bg-background rounded-md">
                               <Calendar
                                 mode="single"
                                 className="rounded-md border"
-                                selected={new Date()}
-                                onSelect={() => {}}
+                                selected={selectedDate}
+                                onSelect={setSelectedDate}
                                 disabled={(date) => 
                                   date < new Date() || 
                                   date.getDay() === 0 || 
                                   date.getDay() === 6
                                 }
+                                styles={{
+                                  day_selected: {
+                                    background: "linear-gradient(to right, #06D6A0, #118AB2)",
+                                    color: "white"
+                                  }
+                                }}
                               />
                             </div>
                           </div>
@@ -255,7 +282,12 @@ export function EnhancedScheduling() {
                             <h4 className="text-sm font-medium mb-2">Available times</h4>
                             <div className="grid grid-cols-2 gap-2">
                               {["9:00 AM", "10:00 AM", "11:00 AM", "1:00 PM", "2:00 PM", "3:00 PM"].map((time) => (
-                                <Button key={time} variant="outline" className="justify-start">
+                                <Button 
+                                  key={time} 
+                                  variant={selectedTime === time ? "default" : "outline"} 
+                                  className={`justify-start ${selectedTime === time ? "bg-gradient-to-r from-[#06D6A0] to-[#118AB2] text-white hover:from-[#06D6A0] hover:to-[#118AB2] hover:opacity-90" : ""}`}
+                                  onClick={() => setSelectedTime(time)}
+                                >
                                   {time}
                                 </Button>
                               ))}
@@ -287,6 +319,8 @@ export function EnhancedScheduling() {
                                 id="firstName"
                                 className="w-full p-2 border rounded-md"
                                 placeholder="John"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
                               />
                             </div>
                             <div className="space-y-2">
@@ -295,6 +329,8 @@ export function EnhancedScheduling() {
                                 id="lastName"
                                 className="w-full p-2 border rounded-md"
                                 placeholder="Doe"
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
                               />
                             </div>
                           </div>
@@ -305,6 +341,8 @@ export function EnhancedScheduling() {
                               type="email"
                               className="w-full p-2 border rounded-md"
                               placeholder="john.doe@example.com"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
                             />
                           </div>
                         </div>
@@ -332,6 +370,8 @@ export function EnhancedScheduling() {
                               id="topic"
                               className="w-full p-2 border rounded-md"
                               placeholder="UX Review for my application"
+                              value={topic}
+                              onChange={(e) => setTopic(e.target.value)}
                             />
                           </div>
                           <div className="space-y-2">
@@ -340,6 +380,8 @@ export function EnhancedScheduling() {
                               id="details"
                               className="w-full p-2 border rounded-md h-24"
                               placeholder="Please share any specific questions or areas you'd like to focus on during our meeting."
+                              value={details}
+                              onChange={(e) => setDetails(e.target.value)}
                             />
                           </div>
                         </div>
@@ -363,10 +405,18 @@ export function EnhancedScheduling() {
                         <div className="space-y-4 border rounded-md p-4">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
-                              <AnimatedCoffeeIcon className="h-8 w-8" />
+                              {meetingType === "consultation" ? (
+                                <AnimatedCoffeeIcon className="h-8 w-8" />
+                              ) : (
+                                <AnimatedMessageIcon className="h-8 w-8" />
+                              )}
                               <div>
-                                <p className="font-medium">Free Consultation</p>
-                                <p className="text-sm text-muted-foreground">30 minute session</p>
+                                <p className="font-medium">
+                                  {meetingType === "consultation" ? "Free Consultation" : "Interview Request"}
+                                </p>
+                                <p className="text-sm text-muted-foreground">
+                                  {meetingType === "consultation" ? "30 minute session" : "45 minute session"}
+                                </p>
                               </div>
                             </div>
                             <Button variant="outline" size="sm" onClick={() => setCurrentStep(1)}>
@@ -378,7 +428,9 @@ export function EnhancedScheduling() {
                             <div className="flex items-center justify-between">
                               <div>
                                 <p className="font-medium">Date & Time</p>
-                                <p className="text-sm text-muted-foreground">Monday, March 10, 2025 at 10:00 AM</p>
+                                <p className="text-sm text-muted-foreground">
+                                  {formatDate(selectedDate)} {selectedTime ? `at ${selectedTime}` : ""}
+                                </p>
                               </div>
                               <Button variant="outline" size="sm" onClick={() => setCurrentStep(2)}>
                                 Change
@@ -390,7 +442,9 @@ export function EnhancedScheduling() {
                             <div className="flex items-center justify-between">
                               <div>
                                 <p className="font-medium">Your Information</p>
-                                <p className="text-sm text-muted-foreground">John Doe (john.doe@example.com)</p>
+                                <p className="text-sm text-muted-foreground">
+                                  {firstName} {lastName} {email ? `(${email})` : ""}
+                                </p>
                               </div>
                               <Button variant="outline" size="sm" onClick={() => setCurrentStep(3)}>
                                 Change
@@ -402,7 +456,7 @@ export function EnhancedScheduling() {
                             <div className="flex items-center justify-between">
                               <div>
                                 <p className="font-medium">Topic</p>
-                                <p className="text-sm text-muted-foreground">UX Review for my application</p>
+                                <p className="text-sm text-muted-foreground">{topic || "Not specified"}</p>
                               </div>
                               <Button variant="outline" size="sm" onClick={() => setCurrentStep(4)}>
                                 Change
@@ -414,6 +468,24 @@ export function EnhancedScheduling() {
                     </motion.div>
                   )}
                 </AnimatePresence>
+
+                {showConfirmation && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-4 p-4 rounded-md bg-green-50 border border-green-200 text-green-800"
+                  >
+                    <div className="flex items-center">
+                      <Check className="h-5 w-5 mr-2 text-green-600" />
+                      <div>
+                        <p className="font-medium">Meeting Scheduled Successfully!</p>
+                        <p className="text-sm">
+                          You'll receive a confirmation email at {email} with all the details.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
 
                 <DialogFooter className="flex justify-between items-center">
                   <Button 
@@ -428,6 +500,7 @@ export function EnhancedScheduling() {
                   {currentStep < totalSteps ? (
                     <Button 
                       onClick={() => setCurrentStep(prev => Math.min(prev + 1, totalSteps))}
+                      className="bg-gradient-to-r from-[#06D6A0] to-[#118AB2] text-white hover:from-[#06D6A0] hover:to-[#118AB2] hover:opacity-90"
                     >
                       Next
                       <ArrowRight className="ml-2 h-4 w-4" />
@@ -435,11 +508,23 @@ export function EnhancedScheduling() {
                   ) : (
                     <Button 
                       onClick={() => {
-                        // Here you would typically submit the form data
-                        setIsOpen(false);
-                        setCurrentStep(1);
-                        // Show a success message or redirect
+                        // Show confirmation message and close dialog after a delay
+                        setShowConfirmation(true);
+                        setTimeout(() => {
+                          setIsOpen(false);
+                          setCurrentStep(1);
+                          setShowConfirmation(false);
+                          // Reset form fields
+                          setSelectedDate(undefined);
+                          setSelectedTime(null);
+                          setFirstName("");
+                          setLastName("");
+                          setEmail("");
+                          setTopic("");
+                          setDetails("");
+                        }, 3000);
                       }}
+                      className="bg-gradient-to-r from-[#06D6A0] to-[#118AB2] text-white hover:from-[#06D6A0] hover:to-[#118AB2] hover:opacity-90"
                     >
                       Confirm Booking
                       <Check className="ml-2 h-4 w-4" />
@@ -521,13 +606,17 @@ export function EnhancedScheduling() {
               <span>Professional</span>
             </div>
             
-            <Dialog>
+            <Dialog open={isOpen} onOpenChange={setIsOpen}>
               <DialogTrigger asChild>
                 <Button 
                   className="w-full mt-4 group relative overflow-hidden"
                   style={{
                     background: "linear-gradient(to right, #000000, #121212)",
                     color: "white"
+                  }}
+                  onClick={() => {
+                    setMeetingType("interview");
+                    setCurrentStep(1);
                   }}
                 >
                   <span className="relative z-10 flex items-center justify-center">
@@ -546,56 +635,6 @@ export function EnhancedScheduling() {
                   <span className="absolute inset-0 bg-gradient-to-r from-[#06D6A0] to-[#118AB2] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[500px]">
-                <DialogHeader>
-                  <DialogTitle>Request an Interview</DialogTitle>
-                  <DialogDescription>
-                    Complete the form below to request an interview.
-                  </DialogDescription>
-                </DialogHeader>
-
-                <div className="space-y-6 py-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="interviewTopic">Interview Topic</Label>
-                    <input
-                      id="interviewTopic"
-                      className="w-full p-2 border rounded-md"
-                      placeholder="UX Design Trends 2025"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="interviewDetails">Details</Label>
-                    <textarea
-                      id="interviewDetails"
-                      className="w-full p-2 border rounded-md h-24"
-                      placeholder="Please share details about your interview request, including your publication or platform."
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="interviewEmail">Contact Email</Label>
-                    <input
-                      id="interviewEmail"
-                      type="email"
-                      className="w-full p-2 border rounded-md"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-                </div>
-
-                <DialogFooter>
-                  <Button 
-                    onClick={() => {
-                      // Here you would typically submit the form data
-                      // Show a success message or redirect
-                    }}
-                  >
-                    Submit Request
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </DialogFooter>
-              </DialogContent>
             </Dialog>
           </CardContent>
         </Card>
