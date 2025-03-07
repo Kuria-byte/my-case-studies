@@ -39,10 +39,10 @@ export function CollapsibleDesignChallenge() {
             />
             
             <div className="relative z-10">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex items-start md:items-center gap-4">
                   <motion.div 
-                    className="p-3.5 rounded-xl flex items-center justify-center relative overflow-hidden"
+                    className="p-3.5 rounded-xl flex items-center justify-center relative overflow-hidden shrink-0"
                     whileHover={magicWandAnimation.animate}
                     transition={magicWandAnimation.transition}
                     onHoverStart={() => setIsHovered(true)}
@@ -85,7 +85,7 @@ export function CollapsibleDesignChallenge() {
                     />
                   </motion.div>
                   <div>
-                    <h3 className="font-bold text-xl text-white flex items-center gap-2">
+                    <h3 className="font-bold text-xl text-white flex flex-wrap items-center gap-2">
                       Design Challenge Generator
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FFD166]/20 text-[#FFD166] border border-[#FFD166]/30">
                         Interactive
@@ -98,7 +98,7 @@ export function CollapsibleDesignChallenge() {
                 </div>
                 <motion.button
                   onClick={() => setIsExpanded(true)}
-                  className="flex items-center gap-1.5 px-5 py-2.5 rounded-full text-white transition-all duration-300 relative overflow-hidden group"
+                  className="flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-md text-white transition-all duration-300 relative overflow-hidden group w-full md:w-auto"
                   whileHover={{ scale: 1.05 }}
                   style={{
                     background: "linear-gradient(to right, #06D6A0, #118AB2)",
@@ -117,10 +117,10 @@ export function CollapsibleDesignChallenge() {
         {/* Expanded View */}
         {isExpanded && (
           <div className="relative">
-            <div className="bg-zinc-900 p-6 flex items-center justify-between border-b border-border/50">
+            <div className="bg-zinc-900 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border/50">
               <div className="flex items-center gap-4">
                 <motion.div 
-                  className="p-3.5 rounded-xl flex items-center justify-center relative overflow-hidden"
+                  className="p-3.5 rounded-xl flex items-center justify-center relative overflow-hidden shrink-0"
                   whileHover={magicWandAnimation.animate}
                   transition={magicWandAnimation.transition}
                   style={{
@@ -131,7 +131,7 @@ export function CollapsibleDesignChallenge() {
                   <Lightbulb className="h-6 w-6 text-[#06D6A0]" />
                 </motion.div>
                 <div>
-                  <h3 className="font-bold text-xl text-white flex items-center gap-2">
+                  <h3 className="font-bold text-xl text-white flex flex-wrap items-center gap-2">
                     Design Challenge Generator
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FFD166]/20 text-[#FFD166] border border-[#FFD166]/30">
                       Interactive
@@ -141,7 +141,7 @@ export function CollapsibleDesignChallenge() {
               </div>
               <motion.button
                 onClick={() => setIsExpanded(false)}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-full text-white transition-all duration-300 relative overflow-hidden group"
+                className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-md text-white transition-all duration-300 relative overflow-hidden group w-full md:w-auto"
                 whileHover={{ scale: 1.05 }}
                 style={{
                   background: "linear-gradient(to right, #118AB2, #06D6A0)",

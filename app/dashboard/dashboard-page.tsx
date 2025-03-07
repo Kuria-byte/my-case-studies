@@ -35,6 +35,7 @@ export default function DashboardPage() {
   ])
   const [inputMessage, setInputMessage] = useState("")
   const chatEndRef = useRef(null)
+  const sectionsRef = useRef<HTMLDivElement>(null)
 
   const handleCaseStudyClick = (slug: string) => {
     router.push(`/dashboard/${slug}`)
@@ -143,9 +144,16 @@ export default function DashboardPage() {
 
           {/* Dashboard Content */}
           <motion.main className="flex-1 overflow-x-hidden p-6" variants={container} initial="hidden" animate="show">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6" ref={sectionsRef}>
               {/* Personalized Greeting */}
-              <motion.div variants={item} className="col-span-full">
+              <motion.div 
+                variants={item} 
+                className="col-span-full"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
                 <PersonalizedGreeting />
               </motion.div>
 

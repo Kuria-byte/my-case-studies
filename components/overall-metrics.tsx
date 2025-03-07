@@ -21,10 +21,34 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { useEffect, useState } from "react"
 
 const projectData = [
-  { name: "2020", value: 2, label: "2 Projects" },
-  { name: "2021", value: 4, label: "4 Projects" },
-  { name: "2022", value: 7, label: "7 Projects" },
-  { name: "2023", value: 12, label: "12 Projects" },
+  { 
+    name: "2020", 
+    completed: 2, 
+    started: 3, 
+    planned: 1, 
+    label: "Projects" 
+  },
+  { 
+    name: "2021", 
+    completed: 4, 
+    started: 6, 
+    planned: 2, 
+    label: "Projects" 
+  },
+  { 
+    name: "2022", 
+    completed: 7, 
+    started: 9, 
+    planned: 3, 
+    label: "Projects" 
+  },
+  { 
+    name: "2023", 
+    completed: 12, 
+    started: 15, 
+    planned: 5, 
+    label: "Projects" 
+  },
 ]
 
 const userTestingData = [
@@ -113,106 +137,101 @@ export function OverallMetrics() {
     <div className="metrics-container w-full">
       <Tabs defaultValue="brand" className="w-full">
         <TabsList className="grid grid-cols-3 mb-4">
-          <TabsTrigger value="brand">Brand Impact</TabsTrigger>
+      
           <TabsTrigger value="projects">Projects</TabsTrigger>
+          <TabsTrigger value="brand">Brand Impact</TabsTrigger>
           <TabsTrigger value="testing">User Testing</TabsTrigger>
         </TabsList>
-        <TabsContent value="projects" className="mt-0">
-          <div className="grid gap-4">
-            <div className={`${theme === "dark" ? "bg-background/80" : "bg-background/50"} backdrop-blur-sm rounded-lg p-4 border border-border`}>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-2">
-                <h3 className="text-lg font-medium">Projects Completed by Year</h3>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <div className="cursor-help">
-                        <Info className="h-4 w-4 text-muted-foreground" />
-                      </div>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p className="max-w-xs">
-                        Shows the number of UX projects completed each year, demonstrating consistent growth in
-                        productivity and experience.
-                      </p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <p className="text-sm text-muted-foreground mb-4">
-                Steady growth in project completion rate YoY
-              </p>
-              <div className="h-[250px] sm:h-[300px] w-full overflow-hidden">
-                <ChartContainer
-                  config={{
-                    value: {
-                      label: "Projects",
-                      color: "hsl(var(--chart-1))",
-                    },
+        <TabsContent value="projects" className="space-y-4">
+          <div className="h-[300px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={projectData}
+                margin={{ top: 30, right: 10, left: 10, bottom: 10 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke={theme === "dark" ? "#ffffff10" : "#00000010"} />
+                <XAxis
+                  dataKey="name"
+                  stroke={theme === "dark" ? "#ffffff80" : "#00000080"}
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <YAxis
+                  stroke={theme === "dark" ? "#ffffff80" : "#00000080"}
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                  tickFormatter={(value) => `${value}`}
+                />
+                <RechartsTooltip
+                  content={({ active, payload, label }) => {
+                    if (active && payload && payload.length) {
+                      return (
+                        <ChartTooltip>
+                          <ChartTooltipContent>
+                            <div className="font-medium">{label}</div>
+                            <div className="flex flex-col gap-1 mt-2">
+                              <div className="flex items-center gap-2">
+                                <div className="h-2 w-2 rounded-full bg-[#06D6A0]" />
+                                <div>Completed: {payload[0].value}</div>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <div className="h-2 w-2 rounded-full bg-[#118AB2]" />
+                                <div>Started: {payload[1].value}</div>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <div className="h-2 w-2 rounded-full bg-[#FFD166]" />
+                                <div>Planned: {payload[2].value}</div>
+                              </div>
+                            </div>
+                          </ChartTooltipContent>
+                        </ChartTooltip>
+                      )
+                    }
+                    return null
                   }}
+                  cursor={{ fill: theme === "dark" ? "#ffffff10" : "#00000010" }}
+                />
+                <Legend 
+                  verticalAlign="top" 
+                  height={36}
+                  formatter={(value) => {
+                    return <span className="text-xs">{value}</span>
+                  }}
+                />
+                <Bar
+                  name="Completed"
+                  dataKey="completed"
+                  maxBarSize={60}
+                  fill="#06D6A0"
                 >
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart 
-                      data={projectData} 
-                      margin={{ 
-                        top: 20, 
-                        right: 10, 
-                        left: 0, 
-                        bottom: 20 
-                      }}
-                      barGap={40}
-                    >
-                      <CartesianGrid
-                        strokeDasharray="3 3"
-                        stroke={theme === "dark" ? "#2A2A2A" : "#e5e5e5"}
-                        vertical={false}
-                      />
-                      <XAxis
-                        dataKey="name"
-                        stroke={theme === "dark" ? "#ffffff50" : "#71717a"}
-                        tickLine={false}
-                        axisLine={false}
-                        dy={10}
-                        fontSize={12}
-                        tick={{ fontSize: 10 }}
-                      />
-                      <YAxis
-                        stroke={theme === "dark" ? "#ffffff50" : "#71717a"}
-                        tickLine={false}
-                        axisLine={false}
-                        domain={[0, "auto"]}
-                        width={25}
-                        fontSize={10}
-                        tick={{ fontSize: 10 }}
-                      />
-                      <ChartTooltip
-                        content={<ChartTooltipContent />}
-                        cursor={{ fill: theme === "dark" ? "#ffffff10" : "#00000010" }}
-                      />
-                      <Bar
-                        dataKey="value"
-                        maxBarSize={60}
-                        label={{
-                          position: "top",
-                          fill: theme === "dark" ? "#ffffff80" : "#71717a",
-                          fontSize: 10,
-                          dy: -6,
-                        }}
-                      >
-                        {projectData.map((entry, index) => (
-                          <Cell
-                            key={`cell-${index}`}
-                            fill={
-                              index === 0 ? "#118AB2" : index === 1 ? "#06D6A0" : index === 2 ? "#FFD166" : "#EF476F"
-                            }
-                            radius={[4, 4, 0, 0]}
-                          />
-                        ))}
-                      </Bar>
-                    </BarChart>
-                  </ResponsiveContainer>
-                </ChartContainer>
-              </div>
-            </div>
+                  {projectData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill="#06D6A0" />
+                  ))}
+                </Bar>
+                <Bar
+                  name="Started"
+                  dataKey="started"
+                  maxBarSize={60}
+                  fill="#118AB2"
+                >
+                  {projectData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill="#118AB2" />
+                  ))}
+                </Bar>
+                <Bar
+                  name="Planned"
+                  dataKey="planned"
+                  maxBarSize={60}
+                  fill="#FFD166"
+                >
+                  {projectData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill="#FFD166" />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </TabsContent>
         <TabsContent value="testing" className="mt-0">
