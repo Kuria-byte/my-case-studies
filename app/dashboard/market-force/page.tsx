@@ -20,6 +20,10 @@ import { FeedbackForm } from "@/components/feedback-form"
 import { ABTesting } from "@/components/ab-testing"
 import { KeyChallenges } from "@/components/key-challenges"
 import { InteractivePrototype } from "@/components/interactive-prototype"
+import { IdeationGallery } from "@/components/ideation-gallery"
+import { DesignEvolution } from "@/components/design-evolution"
+import { LessonsReflections } from "@/components/lessons-reflections"
+import { ProjectConclusion } from "@/components/project-conclusion"
 
 export default function MarketForceCaseStudy() {
   const router = useRouter()
@@ -66,20 +70,20 @@ export default function MarketForceCaseStudy() {
               <Button variant="ghost" size="icon" className="rounded-full">
                 <span className="sr-only">User menu</span>
                 <Image
-                  src="/images/ian.jpg"
+                  src= "/images/ian.jpg"
                   width="32"
                   height="32"
                   className="rounded-full border border-border"
-                  alt="Ian's avatar"
+                  alt="Ian Kuria's avatar"
                 />
               </Button>
             </div>
           </header>
 
-          {/* Dashboard Content */}
+          {/* Dashboard Content - Reorganized for narrative flow */}
           <motion.main className="flex-1 overflow-auto p-6" variants={container} initial="hidden" animate="show">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Hero Section */}
+              {/* 1. INTRODUCTION - Hero Section */}
               <motion.div variants={item} className="col-span-full">
                 <Card className="overflow-hidden border-border">
                   <CardContent className="p-0">
@@ -91,7 +95,7 @@ export default function MarketForceCaseStudy() {
                         </div>
                         <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Market Force Dashboard</h1>
                         <p className="text-muted-foreground mb-6 max-w-md">
-                          A comprehensive UX case study showcasing the design process behind a digital wallet and
+                          A comprehensive UX case study showcasing the design process behind Reja Reja digital wallet and
                           reconciliation platform for financial institutions in emerging markets.
                         </p>
                         <div className="flex flex-wrap gap-3 mb-6">
@@ -123,30 +127,12 @@ export default function MarketForceCaseStudy() {
                 </Card>
               </motion.div>
 
-              {/* Key Challenges */}
-              <motion.div variants={item} className="col-span-full">
-                <KeyChallenges />
-              </motion.div>
-
-              {/* Project Metrics */}
+              {/* 2. PROJECT OVERVIEW - Project Status & Team */}
               <motion.div variants={item} className="md:col-span-2">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Project Metrics</CardTitle>
-                    <CardDescription>Key performance indicators and project outcomes</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ProjectMetrics />
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              {/* Project Status */}
-              <motion.div variants={item}>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Project Status</CardTitle>
-                    <CardDescription>Current progress and milestones</CardDescription>
+                    <CardTitle>Project Overview</CardTitle>
+                    <CardDescription>Timeline, team, and current status</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
@@ -205,17 +191,12 @@ export default function MarketForceCaseStudy() {
                 </Card>
               </motion.div>
 
-              {/* Interactive Prototype */}
-              <motion.div variants={item} className="col-span-full">
-                <InteractivePrototype />
-              </motion.div>
-
               {/* Project Timeline */}
-              <motion.div variants={item} className="col-span-full">
+              <motion.div variants={item} className="md:col-span-1">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Project Timeline</CardTitle>
-                    <CardDescription>Key milestones and deliverables</CardDescription>
+                    <CardTitle>Timeline</CardTitle>
+                    <CardDescription>Project milestones</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <CollapsibleTimeline />
@@ -223,22 +204,17 @@ export default function MarketForceCaseStudy() {
                 </Card>
               </motion.div>
 
-              {/* A/B Testing */}
-              <motion.div variants={item} className="md:col-span-2">
-                <ABTesting />
+              {/* 3. PROBLEM STATEMENT - Key Challenges */}
+              <motion.div variants={item} className="col-span-full">
+                <KeyChallenges />
               </motion.div>
 
-              {/* Feedback Form */}
-              <motion.div variants={item}>
-                <FeedbackForm />
-              </motion.div>
-
-              {/* User Research Tabs */}
-              <motion.div variants={item} className="md:col-span-2">
+              {/* 4. RESEARCH - User Research Tabs */}
+              <motion.div variants={item} className="col-span-full">
                 <Card>
                   <CardHeader>
                     <CardTitle>User Research</CardTitle>
-                    <CardDescription>Key findings and insights</CardDescription>
+                    <CardDescription>Key findings and insights from research</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Tabs defaultValue="interviews" className="w-full">
@@ -327,17 +303,65 @@ export default function MarketForceCaseStudy() {
                 </Card>
               </motion.div>
 
-              {/* User Feedback */}
-              <motion.div variants={item}>
+              {/* 5. IDEATION - Ideation Gallery */}
+              <motion.div variants={item} className="col-span-full">
+                <IdeationGallery />
+              </motion.div>
+
+              {/* 6. DESIGN PROCESS - Design Evolution */}
+              <motion.div variants={item} className="col-span-full">
+                <DesignEvolution />
+              </motion.div>
+
+              {/* 7. TESTING - A/B Testing */}
+              <motion.div variants={item} className="col-span-full">
+                <ABTesting />
+              </motion.div>
+
+              {/* 8. PROTOTYPE - Interactive Prototype */}
+              <motion.div variants={item} className="col-span-full">
+                <InteractivePrototype />
+              </motion.div>
+
+              {/* 9. USER FEEDBACK */}
+              <motion.div variants={item} className="col-span-full">
                 <Card>
                   <CardHeader>
                     <CardTitle>User Feedback</CardTitle>
-                    <CardDescription>Latest comments from testing</CardDescription>
+                    <CardDescription>Reactions from user testing sessions</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <UserFeedback />
                   </CardContent>
                 </Card>
+              </motion.div>
+
+              {/* 10. RESULTS - Project Metrics */}
+              <motion.div variants={item} className="col-span-full">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Project Results</CardTitle>
+                    <CardDescription>Key performance indicators and project outcomes</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ProjectMetrics />
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* 11. LESSONS - Lessons & Reflections */}
+              <motion.div variants={item} className="col-span-full">
+                <LessonsReflections />
+              </motion.div>
+
+              {/* 12. CONCLUSION - Project Conclusion */}
+              <motion.div variants={item} className="col-span-full">
+                <ProjectConclusion />
+              </motion.div>
+
+              {/* 13. FEEDBACK FORM - At the very end */}
+              <motion.div variants={item} className="col-span-full">
+                <FeedbackForm />
               </motion.div>
             </div>
           </motion.main>
@@ -346,3 +370,4 @@ export default function MarketForceCaseStudy() {
     </div>
   )
 }
+

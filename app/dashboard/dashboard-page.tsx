@@ -226,6 +226,7 @@ export default function DashboardPage() {
                 </Card>
               </motion.div>
 
+             
               {/* Case Studies Section */}
               <motion.div variants={item} className="col-span-full">
                 <Card>
@@ -238,8 +239,8 @@ export default function DashboardPage() {
                       <CaseStudyCard
                         title="Market Force"
                         description="Digital wallet & Reconciliation platform for financial institutions in emerging markets"
-                        image="/placeholder.svg?height=400&width=300"
-                        color="bg-primary"
+                        image="/images/reja.png"
+                        color="bg-[#FFD166]"
                         tags={["Fintech", "Mobile App", "Dashboard"]}
                         metrics={[
                           { label: "Efficiency Increase", value: "78%" },
@@ -252,30 +253,31 @@ export default function DashboardPage() {
                       <CaseStudyCard
                         title="M-pawa"
                         description="Mobile banking platform designed for underserved communities with limited financial access"
-                        image="/placeholder.svg?height=400&width=300"
-                        color="bg-secondary"
-                        tags={["Banking", "Inclusion", "Mobile Money"]}
+                        image="/images/mpawa-mockup.png"
+                        color="bg-[#118AB2]"
+                        tags={["Banking", "Mobile App", "Accessibility"]}
                         metrics={[
-                          { label: "New Users", value: "+45%" },
-                          { label: "Transaction Volume", value: "+120%" },
-                          { label: "User Retention", value: "88%" },
+                          { label: "User Growth", value: "156%" },
+                          { label: "Transaction Volume", value: "2.3M" },
+                          { label: "Retention Rate", value: "87%" },
                         ]}
                         locked={false}
                         onClick={() => handleCaseStudyClick("m-pawa")}
                       />
                       <CaseStudyCard
-                        title="Afya Health"
-                        description="Healthcare platform connecting patients with doctors and facilitating remote consultations"
-                        image="/placeholder.svg?height=400&width=300"
-                        color="bg-accent"
-                        tags={["Healthcare", "Telemedicine", "Booking"]}
+                        title="Chuuza"
+                        description="Cleaning management system that optimizes scheduling and resource allocation (Protected by NDA)"
+                        image="/images/chuuza3.png"
+                        color="bg-[#06D6A0]"
+                        tags={["SaaS", "Web App", "Management"]}
                         metrics={[
-                          { label: "Appointment Bookings", value: "+65%" },
-                          { label: "Patient Satisfaction", value: "91%" },
-                          { label: "Doctor Onboarding", value: "+40%" },
+                          { label: "Scheduling Efficiency", value: "65%" },
+                          { label: "Resource Utilization", value: "42%" },
+                          { label: "Customer Satisfaction", value: "91%" },
                         ]}
                         locked={true}
-                        onClick={() => handleCaseStudyClick("afya-health")}
+                        lockReason="NDA Protected"
+                        onClick={() => handleCaseStudyClick("chuuza")}
                       />
                     </div>
                   </CardContent>
@@ -478,19 +480,18 @@ function HeroImageCarousel() {
   
   const images = [
     {
-      src: "/placeholder.svg?height=600&width=800",
-      alt: "UX Portfolio - Design Process",
-      accent: "from-[#06D6A0]/20 to-transparent"
+      src: "/images/chuuza.png",
+      alt: "UX Case Study - Mpawa",
     },
     {
-      src: "/placeholder.svg?height=600&width=800&text=User+Research",
-      alt: "UX Portfolio - User Research",
-      accent: "from-[#118AB2]/20 to-transparent"
+      src: "/images/voda.png",
+      alt: "UX Portfolio - Vodafone",
+   
     },
     {
-      src: "/placeholder.svg?height=600&width=800&text=Design+System",
-      alt: "UX Portfolio - Design System",
-      accent: "from-[#FFD166]/20 to-transparent"
+      src: "/images/mpawa-s.png",
+      alt: "Chuuza ",
+     
     }
   ];
   
@@ -552,8 +553,8 @@ function HeroImageCarousel() {
           transition={{ delay: 0.2 }}
           className="text-sm text-white/90 backdrop-blur-sm bg-black/20 inline-block px-3 py-1 rounded-full"
         >
-          {currentImageIndex === 0 ? "Design Process" : 
-           currentImageIndex === 1 ? "User Research" : "Design System"}
+          {currentImageIndex === 0 ? "Chuuza" : 
+           currentImageIndex === 1 ? "Vodafone" : "M-pawa"}
         </motion.div>
       </div>
       

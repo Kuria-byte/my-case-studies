@@ -81,7 +81,7 @@ export function CollapsibleTimeline() {
   }, [])
 
   // Determine which items to show - always show only 4 items initially, regardless of device
-  const visibleItems = isExpanded ? timelineItems : timelineItems.slice(0, 4)
+  const visibleItems = isExpanded ? timelineItems : timelineItems.slice(0, 3)
 
   return (
     <div className="relative">
