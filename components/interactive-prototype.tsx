@@ -13,6 +13,7 @@ interface PrototypeScreen {
   title: string
   description: string
   image: string
+  desktopImage?: string
 }
 
 export function InteractivePrototype() {
@@ -24,25 +25,29 @@ export function InteractivePrototype() {
       id: "screen-1",
       title: "Dashboard Overview",
       description: "The main dashboard provides a quick overview of key metrics and recent transactions.",
-      image: "/images/Home.png",
+      image: "/images/Reja4.png",
+      desktopImage: "/images/admin1.png",
     },
     {
       id: "screen-2",
       title: "Transaction Details",
       description: "Detailed view of transaction information with verification status and action buttons.",
       image: "/images/transactions.png",
+      desktopImage: "/images/admin2.png",
     },
     {
       id: "screen-3",
       title: "Top Up Wallet",
       description: "Inbuilt wallet top up feature, with biometrics security.",
       image: "/images/Send.png",
+      desktopImage: "/images/admin1.png",
     },
     {
       id: "screen-4",
       title: "Settings & Preferences",
       description: "User settings page with options for notifications, display preferences, and account management.",
       image: "/images/Profile.png",
+      desktopImage: "/images/admin2.png",
     },
   ]
 
@@ -57,16 +62,43 @@ export function InteractivePrototype() {
   const getDeviceClassName = () => {
     switch (currentDevice) {
       case "mobile":
-        return "max-w-[320px] aspect-[9/16]"
+        return "w-[320px] h-[640px]"
       case "tablet":
-        return "max-w-[500px] aspect-[4/3]"
+        return "w-[600px] h-[800px]"
       case "desktop":
-        return "max-w-[800px] aspect-[16/9]"
+        return "w-[1000px] h-[600px]"
     }
   }
 
+  const getDeviceFrame = () => {
+    switch (currentDevice) {
+      case "mobile":
+        return "rounded-[36px] border-[12px] border-black relative"
+      case "tablet":
+        return "rounded-[20px] border-[10px] border-black relative"
+      case "desktop":
+        return "rounded-[6px] border-[6px] border-gray-800 relative"
+    }
+  }
+
+  const getImageStyle = () => {
+    return {
+      objectFit: "cover",
+      objectPosition: "top",
+      width: "100%",
+      height: "100%"
+    } as const
+  }
+
+  const getImageSrc = (screen: PrototypeScreen) => {
+    if (currentDevice === "desktop" && screen.desktopImage) {
+      return screen.desktopImage;
+    }
+    return screen.image;
+  };
+
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Smartphone className="h-5 w-5" />
@@ -83,7 +115,7 @@ export function InteractivePrototype() {
 
           <TabsContent value="prototype" className="mt-0">
             <div className="flex flex-col items-center">
-              <div className="relative w-full max-w-md aspect-[9/16] bg-white rounded-3xl shadow-lg overflow-hidden mb-8 border">
+              <div className="relative w-[320px] h-[640px] bg-white rounded-[36px] shadow-xl overflow-hidden mb-8 border-[12px] border-black">
                 <motion.div
                   key={screens[currentScreen].id}
                   initial={{ opacity: 0 }}
@@ -92,12 +124,19 @@ export function InteractivePrototype() {
                   transition={{ duration: 0.3 }}
                   className="absolute inset-0"
                 >
-                  <Image
-                    src={screens[currentScreen].image || "/placeholder.svg"}
-                    alt={screens[currentScreen].title}
-                    fill
-                    className="object-contain"
-                  />
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={getImageSrc(screens[currentScreen])}
+                      alt={screens[currentScreen].title}
+                      fill
+                      style={getImageStyle()}
+                      priority
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "/images/ian.jpg";
+                      }}
+                    />
+                  </div>
                 </motion.div>
 
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-white">
@@ -119,10 +158,6 @@ export function InteractivePrototype() {
                 <p className="text-sm text-muted-foreground mb-2">
                   Screen {currentScreen + 1} of {screens.length}
                 </p>
-                {/* <Button variant="outline" size="sm" className="gap-2">
-                  <ExternalLink className="h-4 w-4" />
-                  Open Full Prototype
-                </Button> */}
               </div>
             </div>
           </TabsContent>
@@ -156,24 +191,33 @@ export function InteractivePrototype() {
                 </Button>
               </div>
 
-              <div
-                className={`relative bg-white rounded-lg shadow-lg overflow-hidden mb-8 border ${getDeviceClassName()}`}
-              >
-                <motion.div
-                  key={`${screens[currentScreen].id}-${currentDevice}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute inset-0"
+              <div className="w-full overflow-auto flex justify-center">
+                <div
+                  className={`${getDeviceClassName()} ${getDeviceFrame()} bg-white overflow-hidden mb-8 shadow-xl`}
                 >
-                  <Image
-                    src={screens[currentScreen].image || "/placeholder.svg"}
-                    alt={screens[currentScreen].title}
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
+                  <motion.div
+                    key={`${screens[currentScreen].id}-${currentDevice}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0"
+                  >
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={getImageSrc(screens[currentScreen])}
+                        alt={screens[currentScreen].title}
+                        fill
+                        style={getImageStyle()}
+                        priority
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = "/images/ian.jpg";
+                        }}
+                      />
+                    </div>
+                  </motion.div>
+                </div>
               </div>
 
               <div className="flex gap-4">
@@ -191,4 +235,3 @@ export function InteractivePrototype() {
     </Card>
   )
 }
-
