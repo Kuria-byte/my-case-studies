@@ -2,162 +2,239 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { ChevronDown, ChevronUp } from "lucide-react"
+import { ChevronDown, ChevronUp, Check, Clock, Plus } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { motion, AnimatePresence } from "framer-motion"
 
 interface TimelineItem {
   date: string
   title: string
   description: string
   status: "completed" | "in-progress" | "upcoming"
+  duration: string
+  startDate: Date
+  endDate: Date
 }
 
 export function CollapsibleTimeline() {
   const [isExpanded, setIsExpanded] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [expandedDescriptions, setExpandedDescriptions] = useState<Record<number, boolean>>({})
+
+  // Toggle description visibility
+  const toggleDescription = (index: number) => {
+    setExpandedDescriptions(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }))
+  }
 
   const timelineItems: TimelineItem[] = [
     {
       date: "Jan 15, 2023",
       title: "Project Kickoff",
-      description: "Initial stakeholder meetings and project planning",
+      description: "Initial stakeholder meetings and project planning. Defined project scope, objectives, and key deliverables.",
       status: "completed",
+      duration: "2 weeks",
+      startDate: new Date("2023-01-15"),
+      endDate: new Date("2023-01-29"),
     },
     {
       date: "Feb 10, 2023",
       title: "User Research",
-      description: "Conducted 24 interviews with financial agents, merchants, and end-users",
+      description: "Conducted user interviews, surveys, and competitive analysis to understand user needs and market landscape.",
       status: "completed",
+      duration: "3 weeks",
+      startDate: new Date("2023-02-10"),
+      endDate: new Date("2023-03-03"),
     },
     {
       date: "Mar 5, 2023",
       title: "Wireframing",
-      description: "Created low-fidelity wireframes based on research insights",
+      description: "Created low-fidelity wireframes and user flows based on research insights. Conducted initial usability testing.",
       status: "completed",
+      duration: "5 weeks",
+      startDate: new Date("2023-03-05"),
+      endDate: new Date("2023-04-09"),
     },
     {
-      date: "Apr 12, 2023",
-      title: "Usability Testing",
-      description: "Conducted first round of usability testing with 12 participants",
+      date: "Apr 15, 2023",
+      title: "UI Design",
+      description: "Developed high-fidelity mockups and design system. Iterated based on stakeholder feedback.",
       status: "completed",
+      duration: "4 weeks",
+      startDate: new Date("2023-04-15"),
+      endDate: new Date("2023-05-13"),
     },
     {
       date: "May 20, 2023",
-      title: "High-Fidelity Design",
-      description: "Finalized UI design and created interactive prototype",
+      title: "Prototyping",
+      description: "Built interactive prototypes for user testing. Refined design based on usability findings.",
       status: "completed",
+      duration: "3 weeks",
+      startDate: new Date("2023-05-20"),
+      endDate: new Date("2023-06-10"),
     },
     {
       date: "Jun 15, 2023",
-      title: "Development Handoff",
-      description: "Delivered design specifications and assets to development team",
+      title: "Development",
+      description: "Front-end and back-end implementation. Regular code reviews and QA testing.",
       status: "completed",
+      duration: "8 weeks",
+      startDate: new Date("2023-06-15"),
+      endDate: new Date("2023-08-10"),
     },
     {
-      date: "Jul 30, 2023",
-      title: "Beta Launch",
-      description: "Released beta version to select users for feedback",
+      date: "Aug 15, 2023",
+      title: "Testing & Refinement",
+      description: "Comprehensive testing, bug fixing, and performance optimization.",
       status: "completed",
+      duration: "4 weeks",
+      startDate: new Date("2023-08-15"),
+      endDate: new Date("2023-09-12"),
     },
     {
-      date: "Aug 25, 2023",
-      title: "Full Launch",
-      description: "Official product launch across all target markets",
-      status: "in-progress",
+      date: "Sep 15, 2023",
+      title: "Launch",
+      description: "Product launch and post-launch monitoring.",
+      status: "completed",
+      duration: "2 weeks",
+      startDate: new Date("2023-09-15"),
+      endDate: new Date("2023-09-29"),
     },
   ]
 
-  // Check if we're on mobile
+  // Filter based on view type
+  const filteredItems = timelineItems
+
+  // Determine how many items to show
+  const visibleItems = isExpanded ? filteredItems : filteredItems.slice(0, 2)
+
+  // Check if on mobile
   useEffect(() => {
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth < 768)
     }
-
+    
     checkIfMobile()
     window.addEventListener("resize", checkIfMobile)
-
+    
     return () => {
       window.removeEventListener("resize", checkIfMobile)
     }
   }, [])
 
-  // Determine which items to show - always show only 4 items initially, regardless of device
-  const visibleItems = isExpanded ? timelineItems : timelineItems.slice(0, 3)
-
   return (
-    <div className="relative">
-      <div className="absolute left-4 top-0 bottom-0 w-px bg-[#2A2A2A]" />
-      <div className="space-y-8">
-        {visibleItems.map((item, index) => (
-          <div key={index} className="relative pl-10">
-            <div
-              className={`absolute left-0 top-1 h-8 w-8 rounded-full flex items-center justify-center ${
-                item.status === "completed"
-                  ? "bg-[#06D6A0]/20 text-[#06D6A0]"
-                  : item.status === "in-progress"
-                    ? "bg-[#FFD166]/20 text-[#FFD166]"
-                    : "bg-[#71717A]/20 text-[#71717A]"
-              }`}
-            >
-              {item.status === "completed" ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+    <div className="relative bg-background/30 p-6 rounded-lg border border-border/40">
+    
+
+      {/* Timeline vertical line with better connection to indicators */}
+      <div className="absolute left-[1.5rem] top-[5.5rem] bottom-16 w-[2px] bg-primary/30" />
+      
+      <div className="space-y-6">
+        {visibleItems.map((item, index) => {
+          // Determine status color
+          const statusColor = item.status === "completed" 
+            ? "bg-emerald-500" 
+            : item.status === "in-progress" 
+              ? "bg-amber-500" 
+              : "bg-slate-400";
+              
+          return (
+            <div key={index} className="relative">
+              {/* Status indicator with clear visual hierarchy */}
+              <div className="absolute left-0 top-0 flex items-center justify-center z-10">
+                <div className={`h-12 w-12 rounded-full flex items-center justify-center border-4 border-background ${statusColor} text-white`}>
+                  {item.status === "completed" ? (
+                    <Check className="h-5 w-5" />
+                  ) : item.status === "in-progress" ? (
+                    <Clock className="h-5 w-5" />
+                  ) : (
+                    <Plus className="h-5 w-5" />
+                  )}
+                </div>
+              </div>
+              
+              {/* Clickable timeline item with visual affordance */}
+              <div className="ml-16 relative">
+                <button 
+                  onClick={() => toggleDescription(index)}
+                  className="w-full text-left group focus:outline-none"
+                  aria-expanded={!!expandedDescriptions[index]}
                 >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-              ) : item.status === "in-progress" ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="12" y1="8" x2="12" y2="16" />
-                  <line x1="8" y1="12" x2="16" y2="12" />
-                </svg>
-              )}
+                  {/* Card with hover effect to indicate interactivity */}
+                  <div className="bg-background/50 hover:bg-background/70 transition-colors p-4 rounded-lg border border-border/40 shadow-sm group-focus:ring-2 group-focus:ring-primary/30">
+                    <div className="flex flex-col space-y-2">
+                      {/* Top row with date and status */}
+                      <div className="flex justify-between items-center">
+                        {/* Date with consistent styling */}
+                        <div className="text-sm text-muted-foreground">
+                          {item.date}
+                        </div>
+                        
+                        {/* Status badge */}
+                        <Badge 
+                          className={`
+                            ${item.status === "completed" ? "bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500/20" : 
+                              item.status === "in-progress" ? "bg-amber-500/10 text-amber-500 hover:bg-amber-500/20" : 
+                              "bg-slate-400/10 text-slate-400 hover:bg-slate-400/20"}
+                          `}
+                        >
+                          {item.status === "completed" ? "Completed" : 
+                           item.status === "in-progress" ? "In Progress" : 
+                           "Upcoming"}
+                        </Badge>
+                      </div>
+                      
+                      {/* Title with proper emphasis */}
+                      <h4 className="text-base font-medium">{item.title}</h4>
+                      
+                      {/* Duration badge with consistent placement */}
+                      <div className="flex items-center">
+                        <Badge variant="outline" className="bg-primary/5 text-primary">
+                          {item.duration}
+                        </Badge>
+                        
+                        {/* Expand/collapse indicator */}
+                        <div className="ml-auto text-sm text-muted-foreground flex items-center">
+                          {expandedDescriptions[index] ? "Hide details" : "Show details"}
+                          <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${expandedDescriptions[index] ? 'rotate-180' : ''}`} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+                
+                {/* Collapsible Description with animation */}
+                <AnimatePresence>
+                  {expandedDescriptions[index] && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden mt-2"
+                    >
+                      <div className="bg-background/50 p-4 rounded-lg border border-border/40 text-sm">
+                        {item.description}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-              <div className="text-sm text-white/50">{item.date}</div>
-              <div className="hidden sm:block text-white/50 mx-2">•</div>
-              <div className="font-medium">{item.title}</div>
-            </div>
-            <div className="text-sm text-white/70 mt-1">{item.description}</div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      {timelineItems.length > 4 && (
-        <div className="mt-6 flex justify-center">
-          <Button variant="outline" size="sm" onClick={() => setIsExpanded(!isExpanded)} className="gap-2">
+      {filteredItems.length > 2 && (
+        <div className="mt-6 flex justify-center relative z-10">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={() => setIsExpanded(!isExpanded)} 
+            className="gap-2"
+          >
             {isExpanded ? (
               <>
                 <ChevronUp className="h-4 w-4" />
@@ -166,7 +243,7 @@ export function CollapsibleTimeline() {
             ) : (
               <>
                 <ChevronDown className="h-4 w-4" />
-                Show More ({timelineItems.length - 4} more)
+                Show More ({filteredItems.length - 2} more)
               </>
             )}
           </Button>
@@ -175,4 +252,3 @@ export function CollapsibleTimeline() {
     </div>
   )
 }
-

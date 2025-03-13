@@ -17,7 +17,7 @@ export function IdeationGallery() {
     {
       title: "Brainstorming",
       description: "Initial brainstorming sessions with stakeholders to identify key problems and opportunities",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/team.webp",
       icon: Lightbulb,
       notes:
         "We conducted 3 collaborative workshops with stakeholders from different departments to ensure diverse perspectives. Key techniques used included mind mapping, crazy eights, and affinity diagrams.",
@@ -25,7 +25,7 @@ export function IdeationGallery() {
     {
       title: "Sketching & Wireframing",
       description: "Low-fidelity sketches exploring different UI approaches and information architecture",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/rejaw2.png",
       icon: Pencil,
       notes:
         "After identifying the core user needs, we created over 20 different sketches exploring various approaches to the reconciliation interface. We focused on simplifying complex workflows while maintaining necessary functionality.",
@@ -33,7 +33,7 @@ export function IdeationGallery() {
     {
       title: "Concept Validation",
       description: "Testing early concepts with users to validate assumptions and refine direction",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/images/rejaui.png",
       icon: Braces,
       notes:
         "We tested 5 different concept directions with 8 users representing different roles within financial institutions. This early validation helped us eliminate approaches that were too complex or didn't align with mental models.",
@@ -72,7 +72,7 @@ export function IdeationGallery() {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="absolute right-2 top-2 z-10 bg-background/80 backdrop-blur-sm"
+                      className="absolute right-2 top-2 z-10 bg-background/80"
                     >
                       <Maximize2 className="h-4 w-4" />
                       <span className="sr-only">View full size</span>
@@ -98,9 +98,7 @@ export function IdeationGallery() {
                   className="object-cover transition-all"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-
-                <div className="absolute bottom-0 left-0 right-0 p-4">
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-background/70">
                   <h3 className="text-lg font-semibold">{ideationStages[currentSlide].title}</h3>
                   <p className="text-sm text-muted-foreground">{ideationStages[currentSlide].description}</p>
                 </div>
@@ -176,4 +174,3 @@ export function IdeationGallery() {
     </Card>
   )
 }
-

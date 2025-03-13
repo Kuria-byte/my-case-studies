@@ -22,14 +22,14 @@ export function ABTesting() {
     {
       id: "design-a",
       name: "Design A",
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/images/r1.png",
       description: "Minimalist approach with focus on content hierarchy and whitespace",
       votes: 64,
     },
     {
       id: "design-b",
       name: "Design B",
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/images/r2.png",
       description: "Bold visual elements with emphasis on color and imagery",
       votes: 36,
     },
@@ -87,8 +87,15 @@ export function ABTesting() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {designOptions.map((option) => (
                 <div key={option.id} className="flex flex-col">
-                  <div className="relative aspect-video mb-3 overflow-hidden rounded-lg border">
-                    <Image src={option.image || "/placeholder.svg"} alt={option.name} fill className="object-cover" />
+                  <div className="relative w-full h-auto mb-3 overflow-hidden rounded-lg border">
+                    <div className="aspect-[4/3] relative max-w-[90%] mx-auto">
+                      <Image 
+                        src={option.image || "/placeholder.svg"} 
+                        alt={option.name} 
+                        fill 
+                        className="object-contain" 
+                      />
+                    </div>
                   </div>
 
                   <div className="flex flex-col flex-1">
@@ -239,4 +246,3 @@ export function ABTesting() {
     </Card>
   )
 }
-

@@ -24,6 +24,7 @@ import { IdeationGallery } from "@/components/ideation-gallery"
 import { DesignEvolution } from "@/components/design-evolution"
 import { LessonsReflections } from "@/components/lessons-reflections"
 import { ProjectConclusion } from "@/components/project-conclusion"
+import { Badge } from "@/components/ui/badge"
 
 export default function MarketForceCaseStudy() {
   const router = useRouter()
@@ -70,7 +71,7 @@ export default function MarketForceCaseStudy() {
               <Button variant="ghost" size="icon" className="rounded-full">
                 <span className="sr-only">User menu</span>
                 <Image
-                  src= "/images/ian.jpg"
+                  src="/images/ian.jpg"
                   width="32"
                   height="32"
                   className="rounded-full border border-border"
@@ -112,15 +113,15 @@ export default function MarketForceCaseStudy() {
                       </div>
                       <div className="relative h-[300px] md:h-[400px]">
                         <Image
-                          src="/placeholder.svg?height=600&width=800"
+                          src="/images/reja.png"
                           alt="Market Force App"
                           fill
-                          className="object-cover"
+                          className="object-contain"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-background to-transparent"></div>
-                        <Button className="absolute bottom-4 right-4 bg-[#FFD166] text-black hover:bg-[#FFD166]/90">
+                        {/* Removed the gradient/blur effect */}
+                        {/* <Button className="absolute bottom-4 right-4 bg-[#FFD166] text-black hover:bg-[#FFD166]/90">
                           View Prototype <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
+                        </Button> */}
                       </div>
                     </div>
                   </CardContent>
@@ -168,12 +169,22 @@ export default function MarketForceCaseStudy() {
 
                     <div className="mt-6 pt-6 border-t border-border">
                       <div className="flex items-center justify-between mb-4">
-                        <h4 className="font-medium">Team</h4>
-                        <Button variant="ghost" size="sm" className="h-8 text-xs text-muted-foreground">
+                        {/* <h4 className="font-medium">Team</h4> */}
+                        {/* <Button variant="ghost" size="sm" className="h-8 text-xs text-muted-foreground">
                           View All
-                        </Button>
+                        </Button> */}
                       </div>
-                      <div className="flex -space-x-2">
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium mb-2">My Roles</h5>
+                        <div className="flex flex-wrap gap-2">
+                          <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">UX Research Lead</Badge>
+                          <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">UI Design</Badge>
+                          <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">Usability Testing</Badge>
+                          <Badge variant="outline" className="bg-primary/10 hover:bg-primary/20">Product Strategy</Badge>
+                        </div>
+                      </div>
+                      {/* <h5 className="text-sm font-medium mb-2">Team Members</h5> */}
+                      {/* <div className="flex -space-x-2">
                         {[1, 2, 3, 4, 5].map((i) => (
                           <div
                             key={i}
@@ -185,7 +196,7 @@ export default function MarketForceCaseStudy() {
                         <div className="h-8 w-8 rounded-full bg-[#FFD166] border border-background flex items-center justify-center text-xs font-medium text-black">
                           +2
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </CardContent>
                 </Card>
@@ -370,4 +381,3 @@ export default function MarketForceCaseStudy() {
     </div>
   )
 }
-

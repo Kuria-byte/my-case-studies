@@ -17,28 +17,12 @@ export function DesignEvolution() {
   const designStages = [
     {
       title: "Wireframes",
-      description: "Initial low-fidelity wireframes focusing on information architecture and user flows",
-      beforeImage: "/placeholder.svg?height=400&width=600",
-      afterImage: "/placeholder.svg?height=400&width=600",
+      description: "wireframes focusing on information architecture and user flows",
+      beforeImage: "/images/rejaw2.png",
+      afterImage: "/images/rejaui.png",
       notes:
-        "We started with simple wireframes to establish the core structure and information hierarchy. The focus was on creating a logical flow for reconciliation tasks.",
-    },
-    {
-      title: "Mid-fidelity Mockups",
-      description: "Refined designs with improved visual hierarchy and interaction patterns",
-      beforeImage: "/placeholder.svg?height=400&width=600",
-      afterImage: "/placeholder.svg?height=400&width=600",
-      notes:
-        "Based on feedback from the wireframe testing, we improved the transaction filtering system and added a quick reconciliation feature that users requested.",
-    },
-    {
-      title: "High-fidelity Designs",
-      description: "Polished designs with complete visual styling and micro-interactions",
-      beforeImage: "/placeholder.svg?height=400&width=600",
-      afterImage: "/placeholder.svg?height=400&width=600",
-      notes:
-        "The final designs incorporated the brand identity and focused on accessibility improvements. We added visual cues to help users identify transaction status more quickly.",
-    },
+        "Based on feedback from the wireframe testing, we focused on enhancing the customer's UX.",
+    }
   ]
 
   const nextStage = () => {
