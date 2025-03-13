@@ -86,7 +86,7 @@ export function CollapsibleDesignChallenge() {
                   </motion.div>
                   <div>
                     <h3 className="font-bold text-xl text-white flex flex-wrap items-center gap-2">
-                      Design Challenge Generator
+                  
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FFD166]/20 text-[#FFD166] border border-[#FFD166]/30">
                         Interactive
                       </span>
@@ -132,7 +132,7 @@ export function CollapsibleDesignChallenge() {
                 </motion.div>
                 <div>
                   <h3 className="font-bold text-xl text-white flex flex-wrap items-center gap-2">
-                    Design Challenge Generator
+                  
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FFD166]/20 text-[#FFD166] border border-[#FFD166]/30">
                       Interactive
                     </span>

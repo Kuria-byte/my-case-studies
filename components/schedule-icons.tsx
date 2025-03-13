@@ -22,15 +22,7 @@ export const AnimatedCoffeeIcon = ({ className = "h-10 w-10" }) => {
           ease: "easeInOut",
         }}
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M6,10 Q9,5 12,10"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            className="text-primary/60"
-          />
-        </svg>
+     
       </motion.div>
     </motion.div>
   )
@@ -86,15 +78,7 @@ export const AnimatedMessageIcon = ({ className = "h-10 w-10" }) => {
           ease: "easeInOut",
         }}
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M8,12 C10,8 14,8 16,12"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            className="text-primary/60"
-          />
-        </svg>
+     
       </motion.div>
     </motion.div>
   )

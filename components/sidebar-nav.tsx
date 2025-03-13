@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import { BarChart3, FileText, Home, Layers, Lock, Settings, User, Users } from "lucide-react"
 import { useTheme } from "@/components/theme-provider"
@@ -98,6 +99,23 @@ export function SidebarNav() {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="border-t border-border bg-background">
+        <div className="px-4 py-3">
+          <div className="flex items-center gap-3">
+            <div className="relative h-10 w-10 overflow-hidden rounded-full border border-border">
+              <Image 
+                src="/images/ian.jpg" 
+                alt="Profile" 
+                fill 
+                className="object-cover"
+                priority
+              />
+            </div>
+            <div>
+              <p className="text-sm font-medium">Ian Kuria</p>
+              <p className="text-xs text-muted-foreground">UX Engineer</p>
+            </div>
+          </div>
+        </div>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild tooltip="Settings">
@@ -120,4 +138,3 @@ export function SidebarNav() {
     </Sidebar>
   )
 }
-

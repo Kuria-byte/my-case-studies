@@ -135,7 +135,7 @@ export function PersonalizedGreeting() {
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
                 <h2 className="text-3xl font-bold tracking-tight">{greeting}</h2>
-                <p className="text-muted-foreground mt-1">Welcome to your UX portfolio dashboard</p>
+                <p className="text-muted-foreground mt-1">Welcome to my project showcase</p>
               </motion.div>
               <motion.div
                 className="hidden sm:block"

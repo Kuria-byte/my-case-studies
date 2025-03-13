@@ -21,13 +21,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { useEffect, useState } from "react"
 
 const projectData = [
-  { 
-    name: "2020", 
-    completed: 2, 
-    started: 3, 
-    planned: 1, 
-    label: "Projects" 
-  },
+
   { 
     name: "2021", 
     completed: 4, 
@@ -49,13 +43,27 @@ const projectData = [
     planned: 5, 
     label: "Projects" 
   },
+  { 
+    name: "2024", 
+    completed: 18, 
+    started: 22, 
+    planned: 7, 
+    label: "Projects" 
+  },
+  { 
+    name: "2025", 
+    completed: 3, 
+    started: 5, 
+    planned: 15, 
+    label: "Projects" 
+  },
 ]
 
 const userTestingData = [
-  { name: "Market Force", value: 24, label: "24 Sessions" },
-  { name: "M-pawa", value: 18, label: "18 Sessions" },
-  { name: "Chuuza", value: 12, label: "12 Sessions" },
-  { name: "Other", value: 8, label: "8 Sessions" },
+  { name: "Market Force", value: 24, label: "84 Sessions" },
+  { name: "M-pawa", value: 18, label: "10 Sessions" },
+  { name: "Chuuza", value: 12, label: "40 Sessions" },
+  { name: "Other", value: 8, label: "125 Sessions" },
 ]
 
 const brandImpactData = [

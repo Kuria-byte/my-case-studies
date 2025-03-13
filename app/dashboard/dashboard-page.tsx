@@ -26,6 +26,7 @@ import { UXResourceLibrary } from "@/components/ux-resource-library"
 import { CollapsibleDesignChallenge } from "@/components/collapsible-design-challenge"
 import { BentoQuizCard } from "@/components/bento-quiz-card"
 import DesignChallengeGenerator from "@/components/design-challenge-generator"
+import { CollapsibleCaseStudies } from "@/components/collapsible-case-studies"
 
 export default function DashboardPage() {
   const router = useRouter()
@@ -108,7 +109,7 @@ export default function DashboardPage() {
           <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-border bg-background/80 px-6 backdrop-blur-sm">
             <SidebarTrigger />
 
-            <div className="hidden md:block text-lg font-semibold">Projects Dashboard</div>
+            <div className="hidden md:block text-lg font-semibold">Kuria's Projects</div>
 
             <div className="ml-auto flex items-center gap-4">
               <ThemeToggle />
@@ -168,10 +169,10 @@ export default function DashboardPage() {
                           <span>Kuria</span>
                         </div>
                         <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                          Interactive UX Case Studies
+                          Project Showcase
                         </h1>
                         <p className="text-muted-foreground mb-6 max-w-md">
-                          Explore my design process through immersive case studies that showcase my approach to solving
+                          Explore my development process through immersive case studies that showcase my approach to solving
                           complex user problems.
                         </p>
                         <div className="flex flex-wrap gap-3 mb-6">
@@ -179,16 +180,16 @@ export default function DashboardPage() {
                             UX Research
                           </div>
                           <div className="inline-flex items-center rounded-full bg-primary/10 text-primary px-3 py-1 text-sm">
-                            UI Design
+                            Full-stack development
                           </div>
                           <div className="inline-flex items-center rounded-full bg-secondary/10 text-secondary px-3 py-1 text-sm">
-                            User Testing
+                            Testing
                           </div>
                         </div>
                         <Button 
                           className="bg-gradient-to-r from-[#06D6A0] to-[#118AB2] hover:opacity-90 text-white shadow-md"
                         >
-                          Explore Case Studies
+                          Explore Projects
                         </Button>
                       </div>
                       <HeroImageCarousel />
@@ -204,7 +205,7 @@ export default function DashboardPage() {
               <motion.div variants={item} className="md:col-span-2">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Project Metrics</CardTitle>
+                    <CardTitle>Key Metrics</CardTitle>
                     <CardDescription>Key performance indicators across all projects</CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -235,7 +236,7 @@ export default function DashboardPage() {
                     <CardDescription>Explore detailed UX case studies</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <CollapsibleCaseStudies mobileVisibleCount={3}>
                       <CaseStudyCard
                         title="Market Force"
                         description="Digital wallet & Reconciliation platform for financial institutions in emerging markets"
@@ -279,7 +280,21 @@ export default function DashboardPage() {
                         lockReason="NDA Protected"
                         onClick={() => handleCaseStudyClick("chuuza")}
                       />
-                    </div>
+                      <CaseStudyCard
+                        title="Kenya Power"
+                        description="Mobile banking platform designed for underserved communities with limited financial access"
+                        image="/images/mpawa-mockup.png"
+                        color="bg-[#118AB2]"
+                        tags={["Banking", "Mobile App", "Accessibility"]}
+                        metrics={[
+                          { label: "User Growth", value: "156%" },
+                          { label: "Transaction Volume", value: "2.3M" },
+                          { label: "Retention Rate", value: "87%" },
+                        ]}
+                        locked={false}
+                        onClick={() => handleCaseStudyClick("m-pawa")}
+                      />
+                    </CollapsibleCaseStudies>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -294,7 +309,7 @@ export default function DashboardPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Recent Updates</CardTitle>
-                    <CardDescription>Latest additions and improvements to case studies</CardDescription>
+                    <CardDescription>Latest additions and improvements to my projects</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="relative">
@@ -302,17 +317,19 @@ export default function DashboardPage() {
                       <div className="space-y-8">
                         {[
                           {
-                            date: "2 days ago",
-                            title: "Market Force Case Study Updated",
-                            description: "Added new usability testing results and updated metrics",
-                          },
-                          {
                             date: "1 week ago",
-                            title: "New Quiz Added",
-                            description: "Added interactive quiz on usability heuristics",
-                          },
+                            title: "Exel MVP Completed",
+                            description: "Career and startup acceleration powered by AI",
+                            href: "https://startup-exel.vercel.app/dashboard",
+                          },                     
                           {
                             date: "2 weeks ago",
+                            title: "New Article Added",
+                            description: "Designing for accessibility",
+                            href: "https://www.kuria.pro",
+                          },
+                          {
+                            date: "3 weeks ago",
                             title: "M-pawa Case Study Published",
                             description: "Released complete case study with interactive prototype",
                           },
@@ -327,6 +344,7 @@ export default function DashboardPage() {
                               <div className="font-medium">{item.title}</div>
                             </div>
                             <div className="text-sm text-muted-foreground mt-1">{item.description}</div>
+
                           </div>
                         ))}
                         <Dialog>
@@ -338,7 +356,7 @@ export default function DashboardPage() {
                               <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                                 <div className="text-sm text-muted-foreground">Currently working on</div>
                                 <div className="hidden sm:block text-muted-foreground mx-2">•</div>
-                                <div className="font-medium">New case study</div>
+                                <div className="font-medium">TruthKenya (new) </div>
                               </div>
                               <div className="text-sm text-muted-foreground mt-1 flex items-center">
                                 Stay tuned for updates!
@@ -358,10 +376,10 @@ export default function DashboardPage() {
                             </DialogHeader>
                             <div className="space-y-4 mt-4">
                               <div>
-                                <h3 className="text-lg font-medium mb-2">Mental Health App Case Study</h3>
+                                <h3 className="text-lg font-medium mb-2">Truth Kenya</h3>
                                 <p className="text-sm text-muted-foreground">
-                                  I'm currently working on a comprehensive case study for a mental health app 
-                                  designed to help users track their mood, practice mindfulness, and connect with therapists.
+                                  I'm currently leading development of an Open-source platform for tracking government
+                                  spending, holding leaders accountable, and driving civic action.
                                 </p>
                               </div>
                               
@@ -374,19 +392,19 @@ export default function DashboardPage() {
                                   </li>
                                   <li className="flex items-center gap-2">
                                     <CheckCircle2 className="h-4 w-4 text-success" />
-                                    <span>User interviews conducted</span>
+                                    <span>Established project scope </span>
                                   </li>
                                   <li className="flex items-center gap-2">
                                     <div className="h-4 w-4 rounded-full bg-primary animate-pulse" />
-                                    <span className="font-medium">Currently working on wireframes</span>
+                                    <span className="font-medium">Currently working on optimizing API's</span>
+                                  </li>
+                                  <li className="flex items-center gap-2 text-muted-foreground">
+                                  <div className="h-4 w-4 rounded-full bg-primary animate-pulse" />
+                                  <span>Released V1.0 (<a href="https://www.truthkenya.com" target="_blank" rel="noopener noreferrer">www.truthkenya.com</a>)</span>
                                   </li>
                                   <li className="flex items-center gap-2 text-muted-foreground">
                                     <div className="h-4 w-4 rounded-full border border-muted-foreground" />
-                                    <span>High-fidelity mockups (Coming soon)</span>
-                                  </li>
-                                  <li className="flex items-center gap-2 text-muted-foreground">
-                                    <div className="h-4 w-4 rounded-full border border-muted-foreground" />
-                                    <span>Usability testing (Coming soon)</span>
+                                    <span>New Features Roadmap (Coming soon) </span>
                                   </li>
                                 </ul>
                               </div>
