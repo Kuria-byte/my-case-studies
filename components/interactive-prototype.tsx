@@ -36,13 +36,13 @@ export function InteractivePrototype() {
       id: "screen-3",
       title: "Top Up Wallet",
       description: "Inbuilt wallet top up feature, with biometrics security.",
-      image: "/images/send.png",
+      image: "/images/Send.png",
     },
     {
       id: "screen-4",
       title: "Settings & Preferences",
       description: "User settings page with options for notifications, display preferences, and account management.",
-      image: "/images/profile.png",
+      image: "/images/Profile.png",
     },
   ]
 
