@@ -24,25 +24,25 @@ export function InteractivePrototype() {
       id: "screen-1",
       title: "Dashboard Overview",
       description: "The main dashboard provides a quick overview of key metrics and recent transactions.",
-      image: "/placeholder.svg?height=800&width=400",
+      image: "/images/Home.png",
     },
     {
       id: "screen-2",
       title: "Transaction Details",
       description: "Detailed view of transaction information with verification status and action buttons.",
-      image: "/placeholder.svg?height=800&width=400",
+      image: "/images/transactions.png",
     },
     {
       id: "screen-3",
-      title: "Reconciliation Process",
-      description: "Step-by-step workflow for reconciling transactions with visual progress indicators.",
-      image: "/placeholder.svg?height=800&width=400",
+      title: "Top Up Wallet",
+      description: "Inbuilt wallet top up feature, with biometrics security.",
+      image: "/images/send.png",
     },
     {
       id: "screen-4",
       title: "Settings & Preferences",
       description: "User settings page with options for notifications, display preferences, and account management.",
-      image: "/placeholder.svg?height=800&width=400",
+      image: "/images/profile.png",
     },
   ]
 
@@ -96,7 +96,7 @@ export function InteractivePrototype() {
                     src={screens[currentScreen].image || "/placeholder.svg"}
                     alt={screens[currentScreen].title}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </motion.div>
 
@@ -119,10 +119,10 @@ export function InteractivePrototype() {
                 <p className="text-sm text-muted-foreground mb-2">
                   Screen {currentScreen + 1} of {screens.length}
                 </p>
-                <Button variant="outline" size="sm" className="gap-2">
+                {/* <Button variant="outline" size="sm" className="gap-2">
                   <ExternalLink className="h-4 w-4" />
                   Open Full Prototype
-                </Button>
+                </Button> */}
               </div>
             </div>
           </TabsContent>

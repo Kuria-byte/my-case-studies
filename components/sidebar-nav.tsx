@@ -37,11 +37,11 @@ export function SidebarNav() {
       <SidebarHeader className="border-b border-border bg-background">
         <div className="flex h-16 items-center px-4">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <div
+            {/* <div
               className={`h-8 w-8 rounded-full ${theme === "dark" ? "bg-[#FFD166]" : "bg-[#FFD166]"} flex items-center justify-center`}
             >
-              <span className="font-bold text-black">K</span>
-            </div>
+              <span className="font-bold text-black">  </span>
+            </div> */}
             <span className="font-bold text-xl">Kuria</span>
           </Link>
         </div>
@@ -112,25 +112,18 @@ export function SidebarNav() {
             </div>
             <div>
               <p className="text-sm font-medium">Ian Kuria</p>
-              <p className="text-xs text-muted-foreground">UX Engineer</p>
+              <p className="text-xs text-muted-foreground">Software Engineer</p>
             </div>
           </div>
         </div>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip="Settings">
-              <Link href="#">
-                <Settings className="h-5 w-5" />
-                <span>Settings</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+        
           <SidebarMenuItem>
             <SidebarMenuButton asChild tooltip="Profile">
-              <Link href="#">
+              <a href="https://www.kuria.pro/" target="_blank" rel="noopener noreferrer" >
                 <User className="h-5 w-5" />
                 <span>Profile</span>
-              </Link>
+              </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

@@ -64,8 +64,8 @@ export function ProjectConclusion() {
             >
               <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#06D6A0]" />
               <div>
-                <h4 className="text-sm font-medium">Offline Functionality</h4>
-                <p className="text-xs text-muted-foreground">Reliable operation in areas with poor connectivity</p>
+                <h4 className="text-sm font-medium">Aceess to Credit</h4>
+                <p className="text-xs text-muted-foreground">Streamlined acess to credit to over 700k merchants across Africa</p>
               </div>
             </motion.div>
 
@@ -116,9 +116,9 @@ export function ProjectConclusion() {
                 <Sparkles className="h-3 w-3 text-[#FFD166]" />
               </div>
               <div>
-                <h4 className="text-sm font-medium">Multi-Currency Support</h4>
+                <h4 className="text-sm font-medium">AI- agent Support</h4>
                 <p className="text-xs text-muted-foreground">
-                  Expand functionality to handle transactions in multiple currencies
+                  Reduce customer support workload with automated responses
                 </p>
               </div>
             </div>
@@ -138,6 +138,7 @@ export function ProjectConclusion() {
                 className="bg-black hover:bg-black/90 text-white dark:bg-white dark:text-black dark:hover:bg-white/90"
                 size="sm"
               >
+                <a href="https://kuria.pro/" target="_blank" rel="noopener noreferrer"></a>
                 Contact Us <ArrowRight className="ml-2 h-3 w-3" />
               </Button>
             </div>

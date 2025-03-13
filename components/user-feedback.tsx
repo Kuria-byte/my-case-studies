@@ -4,28 +4,28 @@ export function UserFeedback() {
   const feedback = [
     {
       id: 1,
-      name: "Sarah Johnson",
-      role: "Financial Agent",
+      name: "Lillian Wanjiru",
+      role: "Rejareja Agent",
       comment:
         "The new reconciliation feature has saved me hours of work every day. I can now focus on serving more customers.",
-      date: "2 days ago",
+      
       rating: 5,
     },
     {
       id: 2,
-      name: "Michael Okonkwo",
+      name: "Duncan Kibet",
       role: "Merchant",
       comment:
         "The offline mode works perfectly in my area where connectivity is spotty. Transactions sync seamlessly when I'm back online.",
-      date: "1 week ago",
+      
       rating: 5,
     },
     {
       id: 3,
-      name: "Amina Kimathi",
-      role: "End User",
-      comment: "I love the visual receipts. They make me feel more confident that my money is being handled correctly.",
-      date: "2 weeks ago",
+      name: "Andrea Kimathi",
+      role: "Merchant",
+      comment: "I can now access credit and order stock seemlessly. Thank you team!",
+      
       rating: 4,
     },
   ]
@@ -69,7 +69,7 @@ export function UserFeedback() {
               <div className="text-xs text-white/50 flex items-center gap-2">
                 <span>{item.role}</span>
                 <span>•</span>
-                <span>{item.date}</span>
+               
               </div>
               <p className="mt-2 text-sm text-white/70">{item.comment}</p>
             </div>
