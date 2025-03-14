@@ -114,8 +114,8 @@ export function DashboardFooter() {
         <div>
           <h3 className="text-lg font-semibold mb-4">About Me</h3>
           <p className="text-muted-foreground mb-4">
-            UX Designer with a passion for creating user-centered products that solve real problems. Specializing in
-            fintech, accessibility, and emerging markets.
+            Software Engineer with a passion for creating user-centered products that solve real problems. Specializing in
+            fintech, startups, data visualization and AI-agents.
           </p>
           <div className="flex flex-wrap gap-2">
             <Badge variant="outline">UX Research</Badge>

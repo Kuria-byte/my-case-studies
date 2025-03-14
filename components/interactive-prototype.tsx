@@ -25,7 +25,7 @@ export function InteractivePrototype() {
       id: "screen-1",
       title: "Dashboard Overview",
       description: "The main dashboard provides a quick overview of key metrics and recent transactions.",
-      image: "/images/Reja4.png",
+      image: "/images/reja4.png",
       desktopImage: "/images/admin1.png",
     },
     {
